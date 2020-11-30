@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+ <meta charset="UTF-8">  
+ <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">  
+<script>   
+(function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=640){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script> 
+<title>标题</title> 
+<link rel="stylesheet" href="https://yarnpkg.com/en/package/normalize.css">
+<style>
+  body{ background: #eee; }
+  .main-box{ width: 100%; }
+  .main-content{ background: #fff; padding: 0.2rem;}
+  .main-box h1{ display: block; font-size: 0.32rem; margin-top: 0.3rem;}
+  .main-box h2{ display: block; font-size: 0.32rem; margin-top: 0.3rem;}
+  .main-box p{display: block; font-size: 0.24rem; border-bottom: 1px solid #e4e4e4; padding-bottom: 0.3rem;}
+</style>
+</head>
+<body>
+  <div class="main-box">
+<div id="qrcode"></div>
+  </div>
+  <script src="./js/jquery-1.10.2.min.js"></script>
+  <script src="./js/jquery.qrcode.min.js"></script>
+  <script>
+      $(function(){
+          $('#qrcode').qrcode("http://www.jq22.com");
+      });
+  </script>
+</body>
+</html>
